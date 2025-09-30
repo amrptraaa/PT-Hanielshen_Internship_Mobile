@@ -48,7 +48,7 @@ export default function ProfilePage() {
                 <label className="text-sm font-medium text-gray-600">
                   Full Name
                 </label>
-                <Input defaultValue="John Doe" className="mt-1" />
+                <Input defaultValue="Jacob Jones" className="mt-1" />
               </div>
 
               {/* Tanggal Lahir */}
@@ -64,7 +64,10 @@ export default function ProfilePage() {
                 <label className="text-sm font-medium text-gray-600">
                   Posisi
                 </label>
-                <Input defaultValue="Frontend Developer" className="mt-1" />
+                <Input
+                  defaultValue="12345678 - Junior UX Designer"
+                  className="mt-1"
+                />
               </div>
 
               {/* No HP */}
