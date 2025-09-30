@@ -1,196 +1,139 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { HistoryIcon, LogoutIcon } from "@/components/ui/icons"; // Pastikan path ini benar
-
-// Tipe data untuk riwayat absensi agar lebih terstruktur
-type AttendanceRecord = {
-  day: string;
-  date: string;
-  checkIn: string;
-  checkOut: string;
-  isLate: boolean;
-};
-
-// Data statis untuk riwayat absensi (sesuai desain)
-const attendanceHistoryData: AttendanceRecord[] = [
-  {
-    day: "Mon",
-    date: "18 April 2023",
-    checkIn: "08:00",
-    checkOut: "05:00 PM",
-    isLate: false,
-  },
-  {
-    day: "Fri",
-    date: "15 April 2023",
-    checkIn: "08:52",
-    checkOut: "05:00 PM",
-    isLate: true,
-  },
-  {
-    day: "Thu",
-    date: "14 April 2023",
-    checkIn: "07:45",
-    checkOut: "05:00 PM",
-    isLate: false,
-  },
-  {
-    day: "Wed",
-    date: "13 April 2023",
-    checkIn: "07:55",
-    checkOut: "05:00 PM",
-    isLate: false,
-  },
-  {
-    day: "Tue",
-    date: "12 April 2023",
-    checkIn: "08:48",
-    checkOut: "05:00 PM",
-    isLate: true,
-  },
-  {
-    day: "Mon",
-    date: "11 April 2023",
-    checkIn: "07:52",
-    checkOut: "05:00 PM",
-    isLate: false,
-  },
-];
+import React from "react";
+import { Calendar } from "lucide-react";
+import BottomNavBar from "@/components/layout/bottomNavBar";
 
 export default function HomePage() {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const tasks = [
+    {
+      title: "Candidate Management",
+      project: "Zoho Project",
+      teammates: [
+        "https://i.pravatar.cc/40?img=1",
+        "https://i.pravatar.cc/40?img=2",
+        "https://i.pravatar.cc/40?img=3",
+      ],
+      dueDate: "June 6, 2022",
+      progress: 88,
+    },
+    {
+      title: "Candidate Management",
+      project: "hrSense Project",
+      teammates: [
+        "https://i.pravatar.cc/40?img=4",
+        "https://i.pravatar.cc/40?img=5",
+        "https://i.pravatar.cc/40?img=6",
+      ],
+      dueDate: "June 6, 2022",
+      progress: 88,
+    },
+  ];
 
-  // useEffect untuk mengupdate jam setiap detik
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    // Membersihkan interval saat komponen tidak lagi digunakan
-    return () => clearInterval(timer);
-  }, []);
-
-  // Fungsi untuk format waktu (HH:MM AM/PM)
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
-
-  // Fungsi untuk format tanggal (Contoh: Senin, 18 April 2023)
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("id-ID", {
-      // 'id-ID' untuk format bahasa Indonesia
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
-
-  const handleClockIn = () => {
-    alert("Simulasi: Anda berhasil Clock In!");
-  };
-
-  const handleClockOut = () => {
-    alert("Simulasi: Anda berhasil Clock Out!");
-  };
-
-  const handleLogout = () => {
-    alert("Simulasi: Anda berhasil Logout!");
-  };
+  const dates = [
+    { day: "Mon", date: "4" },
+    { day: "Tue", date: "5" },
+    { day: "Wed", date: "6" },
+    { day: "Thr", date: "7" },
+    { day: "Fri", date: "8" },
+  ];
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header Pengguna */}
-      <header className="flex items-center justify-between mb-8">
-        <div className="flex items-center space-x-4">
-          <img
-            src="https://placehold.co/60x60/E2E8F0/4A5568?text=JJ"
-            alt="Foto Profil Jacob Jones"
-            className="w-14 h-14 rounded-full"
-          />
-          <div>
-            <h1 className="text-xl font-bold text-gray-800">Jacob Jones</h1>
-            <p className="text-sm text-gray-500">
-              12345678 - Junior UX Designer
-            </p>
-          </div>
-        </div>
-        <button
-          onClick={handleLogout}
-          className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
-          aria-label="Logout"
-        >
-          <LogoutIcon className="w-6 h-6" />
-        </button>
-      </header>
-
-      {/* Kartu Absensi Live */}
-      <div className="bg-white shadow-lg rounded-2xl p-6 mb-8 text-center">
-        <p className="text-sm text-gray-500 mb-2">Live Attendance</p>
-        <h2 className="text-5xl font-bold text-gray-800 tracking-tight">
-          {formatTime(currentTime)}
-        </h2>
-        <p className="text-gray-600 mt-2">{formatDate(currentTime)}</p>
-
-        <div className="mt-6 border-t pt-4">
-          <p className="text-sm text-gray-500">Office Hours</p>
-          <p className="text-lg font-semibold text-gray-700">
-            08:00 AM - 05:00 PM
-          </p>
-        </div>
-
-        {/* Tombol Aksi */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-          <button
-            onClick={handleClockIn}
-            className="w-full px-4 py-3 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
-          >
-            Clock In
-          </button>
-          <button
-            onClick={handleClockOut}
-            className="w-full px-4 py-3 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
-          >
-            Clock Out
-          </button>
-        </div>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-blue-500 text-white p-6 rounded-b-3xl">
+        <p className="text-sm">Good Morning</p>
+        <h1 className="text-2xl font-bold">Jacob Jones</h1>
       </div>
 
-      {/* Judul Riwayat Absensi */}
-      <div className="flex items-center mb-4">
-        <HistoryIcon className="w-6 h-6 text-gray-600 mr-3" />
-        <h3 className="text-xl font-bold text-gray-800">Attendance History</h3>
-      </div>
-
-      {/* Daftar Riwayat Absensi */}
-      <div className="bg-white shadow-lg rounded-2xl p-4 sm:p-6 space-y-2">
-        {attendanceHistoryData.map((record, index) => (
-          <div
-            key={index}
-            className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-          >
-            <div>
-              <p className="font-semibold text-gray-800 text-sm sm:text-base">
-                {record.day}, {record.date}
-              </p>
+      {/* Select date */}
+      <div className="px-6 mt-4">
+        <p className="text-gray-700 font-semibold mb-3">Select date</p>
+        <div className="flex space-x-3 overflow-x-auto">
+          {dates.map((d, i) => (
+            <div
+              key={i}
+              className={`flex flex-col items-center justify-center rounded-2xl px-4 py-2 min-w-[60px] ${
+                i === 0 ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-700"
+              }`}
+            >
+              <p className="text-sm font-medium">{d.day}</p>
+              <p className="text-lg font-bold">{d.date}</p>
             </div>
-            <div>
-              <p
-                className={`font-semibold text-right text-sm sm:text-base ${
-                  record.isLate ? "text-red-500" : "text-gray-600"
-                }`}
-              >
-                {record.checkIn} - {record.checkOut}
-              </p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
+      {/* Ongoing tasks */}
+      <div className="px-6 mt-6 flex-1">
+        <p className="text-gray-700 font-semibold mb-3">Ongoing task</p>
+        <div className="space-y-4">
+          {tasks.map((task, i) => (
+            <div
+              key={i}
+              className="bg-white p-4 rounded-2xl shadow flex flex-col sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div>
+                <h3 className="font-semibold text-gray-800">{task.title}</h3>
+                <p className="text-sm text-gray-500">For - {task.project}</p>
+                <div className="flex items-center mt-3 space-x-2">
+                  {task.teammates.slice(0, 2).map((src, j) => (
+                    <img
+                      key={j}
+                      src={src}
+                      alt="avatar"
+                      className="w-8 h-8 rounded-full border-2 border-white"
+                    />
+                  ))}
+                  <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">
+                    +3
+                  </span>
+                </div>
+                <div className="flex items-center mt-3 text-sm text-gray-600">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  {task.dueDate}
+                </div>
+              </div>
+              {/* Progress circle */}
+              <div className="mt-4 sm:mt-0">
+                <div className="relative w-16 h-16">
+                  <svg className="w-full h-full -rotate-90">
+                    <circle
+                      cx="50%"
+                      cy="50%"
+                      r="28"
+                      stroke="#E5E7EB"
+                      strokeWidth="6"
+                      fill="transparent"
+                    />
+                    <circle
+                      cx="50%"
+                      cy="50%"
+                      r="28"
+                      stroke="#F97316"
+                      strokeWidth="6"
+                      strokeDasharray={2 * Math.PI * 28}
+                      strokeDashoffset={
+                        2 * Math.PI * 28 * (1 - task.progress / 100)
+                      }
+                      fill="transparent"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-sm font-semibold text-gray-700">
+                      {task.progress}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Navigation */}
+      <BottomNavBar />
     </div>
   );
 }
