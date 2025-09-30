@@ -42,7 +42,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-blue-500 text-white p-6 rounded-b-3xl">
-        <p className="text-sm">Good Morning</p>
+        <p className="text-sm"> Selamat Bekerja!</p>
         <h1 className="text-2xl font-bold">Jacob Jones</h1>
       </div>
 
