@@ -48,8 +48,8 @@ const AttendancePage = () => {
         </button>
 
         <div>
-          <h2 className="font-semibold">Jacob Jones</h2>
-          <p className="text-sm">12345678 - Junior UX Designer</p>
+          <h2 className="font-semibold">Budi Irawan</h2>
+          <p className="text-sm">Pekreja</p>
         </div>
       </div>
 
