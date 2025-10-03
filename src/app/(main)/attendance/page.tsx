@@ -49,7 +49,7 @@ const AttendancePage = () => {
 
         <div>
           <h2 className="font-semibold">Budi Irawan</h2>
-          <p className="text-sm">Pekreja</p>
+          <p className="text-sm">Pekerja</p>
         </div>
       </div>
 
