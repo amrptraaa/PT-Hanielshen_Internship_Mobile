@@ -48,7 +48,7 @@ export default function HomePage() {
 
       {/* Select date */}
       <div className="px-6 mt-4">
-        <p className="text-gray-700 font-semibold mb-3">Select date</p>
+        <p className="text-gray-700 font-semibold mb-3">Pilih Tanggal</p>
         <div className="flex space-x-3 overflow-x-auto">
           {dates.map((d, i) => (
             <div
@@ -66,7 +66,9 @@ export default function HomePage() {
 
       {/* Ongoing tasks */}
       <div className="px-6 mt-6 flex-1">
-        <p className="text-gray-700 font-semibold mb-3">Ongoing task</p>
+        <p className="text-gray-700 font-semibold mb-3">
+          Tugas yang sedang berlangsung
+        </p>
         <div className="space-y-4">
           {tasks.map((task, i) => (
             <div
