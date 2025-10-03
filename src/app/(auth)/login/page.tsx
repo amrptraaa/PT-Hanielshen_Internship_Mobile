@@ -8,8 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
-  // ... (State dan fungsi handleLogin tetap sama, tidak perlu diubah)
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,43 +17,45 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    if (username === "user" && password === "password") {
-      alert("Login Berhasil!");
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    if (
+      email === "budi.irawan@hanielshen.employee.id" &&
+      password === "pekerja123"
+    ) {
+      alert("Login Berhasil! Selamat datang, Budi.");
       router.push("/home");
     } else {
-      alert("Username atau Password salah! (Coba: user / password)");
+      alert("Email atau Password salah! Silakan coba lagi.");
     }
+
     setIsLoading(false);
   };
 
   return (
-    // -> Di mobile, flex-col. Di desktop (md), tetap flex-col
     <div className="flex flex-col w-full max-w-md">
-      {/* Bagian Atas dengan Teks */}
+      {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
         <p className="text-gray-500">Login to your account</p>
       </div>
 
-      {/* Bagian Form */}
-      {/* -> Di mobile (default): padding-nya 0
-          -> Di desktop (md): padding-nya 8, ada bayangan & sudut membulat */}
+      {/* Form */}
       <div className="w-full bg-white md:shadow-lg md:rounded-2xl md:p-8">
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label
-              htmlFor="username"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-700"
             >
-              Username
+              Email
             </label>
             <Input
-              id="username"
-              type="text"
-              placeholder="Enter your username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               disabled={isLoading}
             />
           </div>

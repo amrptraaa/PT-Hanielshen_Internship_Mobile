@@ -72,13 +72,13 @@ const AttendancePage = () => {
               onClick={() => router.push("/attendance/clock-in")}
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow"
             >
-              Clock In
+              Masuk
             </button>
             <button
               onClick={() => router.push("/attendance/clock-out")}
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow"
             >
-              Clock Out
+              Keluar
             </button>
           </div>
         </div>

@@ -43,7 +43,7 @@ export default function HomePage() {
       {/* Header */}
       <div className="bg-blue-500 text-white p-6 rounded-b-3xl">
         <p className="text-sm"> Selamat Bekerja!</p>
-        <h1 className="text-2xl font-bold">Jacob Jones</h1>
+        <h1 className="text-2xl font-bold">Budi Irawan</h1>
       </div>
 
       {/* Select date */}
